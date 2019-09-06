@@ -11,7 +11,7 @@
 
     <ul>
     @foreach ($projects as $project)
-        <li>{{ $project->title }} {{ $project->description }}</li>    
+    <li><a href="/projects/{{$project->id}}">{{ $project->title }}</a> {{ $project->description }}</li>
     @endforeach
     </ul>
 

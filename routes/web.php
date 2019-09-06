@@ -17,7 +17,20 @@ Route::get('/','PagesController@home');
 Route::get('/about','PagesController@about');
 Route::get('/contact','PagesController@contact');
 
-Route::get('/projects','ProjectController@index');
-Route::post('/projects', 'ProjectController@store');
-Route::get('/projects/create','ProjectController@create');
 
+
+Route::resource('projects', 'ProjectController');
+/*
+//show all projects
+Route::get('/projects','ProjectController@index');
+//show one project
+Route::get('/projects/{project}','ProjectController@show');
+//create new project
+Route::get('/projects/create','ProjectController@create');
+Route::post('/projects', 'ProjectController@store');
+//update project
+Route::get('/projects/{project}/edit','ProjectController@edit');
+Route::patch('/projects/{project}', 'ProjectController@update');
+//delete project
+Route::delete('/projects/{project}', 'ProjectController@destroy');
+ */
