@@ -13,4 +13,16 @@ class Project extends Model
         return $this->hasMany(Task::class);
     }
 
+    public function addTask($description)
+    {
+        $attributes = request()->validate(['description' => 'required']);
+
+        $this->Tasks()->create($attributes);
+
+        /* return Task::create([
+            'project_id' => $this->id,
+            'description' => $description
+        ]); */
+    }
+
 }

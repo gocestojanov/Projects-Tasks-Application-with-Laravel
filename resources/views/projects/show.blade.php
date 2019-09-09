@@ -9,15 +9,17 @@
                 <h1>Show Project {{ $project->id }}</h1>
         </div>
 
+        <div><a href="/projects/{{ $project->id }}/edit">Edit this Project</a></div>
         <div class="title">{{ $project->title }}</div>
 
         <p class="subtitle">{{ $project->description }}</p>
 
 
+
         @if ($project->tasks->count())
 
 
-            <div>
+            <div class='box'>
 
                 @foreach ($project->tasks as $task)
                     <div>
@@ -39,7 +41,55 @@
 
         @endif
 
-        <div><a href="/projects/{{ $project->id }}/edit">Edit this Project</a></div>
+
+
+
+        <form action="/projects/{{ $project->id }}/tasks"  method="POST" class="box">
+            @csrf
+
+
+            {{--
+
+            <div class="control">
+                <input type="checkbox" name="completed" id="" placeholder="Task is completed" class="input" value="{{ old('completed') }}">
+
+            </div>
+
+            <label class="checkbox {{ $task->completed ? 'is_completed' : ''}}" for="completed">
+                    <input type="checkbox" name="completed" onchange="this.form.submit()"
+                    {{ $task->completed ? 'checked' : ''}}>
+                    {{ $task->description }}
+                  </label>
+            comment --}}
+
+            <div class="control">
+                <textarea name="description" id="" cols="30" rows="10"
+                placeholder="project Description" class="textarea {{ $errors->has('description') ? 'is-danger' : '' }}" >{{ old('description') }}</textarea>
+
+            </div>
+
+            <div class="field">
+                {{-- <input type="submit" value="Create Project"> --}}
+                <div class="control">
+
+                <button type="submit" class="button is-link">Create Task</button>
+
+            </div>
+            </div>
+
+            @if ($errors->any())
+
+                <div class="notification is-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+
+            @endif
+        </form>
+
 </div>
 
 @endsection
