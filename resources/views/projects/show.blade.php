@@ -13,6 +13,14 @@
 
         <p class="subtitle">{{ $project->description }}</p>
 
+        <div>
+            <ul class="content">
+            @foreach ($project->tasks as $task)
+                <li>{{ $task->description }}</li>
+            @endforeach
+            </ul>
+        </div>
+
         <div><a href="/projects/{{ $project->id }}/edit">Edit this Project</a></div>
 </div>
 

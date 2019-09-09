@@ -4,29 +4,45 @@
 
 @section('content')
 
-    <h1>Create new Project</h1>
+<div class="container">
+        <div class="notification">
+                <h1>Create new Project</h1>
+        </div>
+
+
 
     <form action="/projects" method="POST">
         @csrf
 
 
-        <div>
-            <input type="text" name="title" id="" placeholder="Project Title">
+        <div class="control">
+            <input type="text" name="title" id="" placeholder="Project Title" class="input" value="{{ old('title') }}">
+        </div>
+
+        <div class="control">
+            <textarea name="description" id="" cols="30" rows="10"
+            placeholder="project Description" class="textarea {{ $errors->has('description') ? 'is-danger' : '' }}" >{{ old('description') }}</textarea>
 
         </div>
 
-        <div>
-            <textarea name="description" id="" cols="30" rows="10" placeholder="project Description"></textarea>
-
-        </div>
-
-        <div>
+        <div class="field">
             {{-- <input type="submit" value="Create Project"> --}}
 
-            <button type="submit">Create Project</button>
+            <button type="submit" class="button is-link">Create Project</button>
         </div>
 
+        @if ($errors->any())
+
+            <div class="notification is-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+
+        @endif
     </form>
 
-
+</div>
 @endsection
