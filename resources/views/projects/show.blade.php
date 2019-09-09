@@ -13,13 +13,31 @@
 
         <p class="subtitle">{{ $project->description }}</p>
 
-        <div>
-            <ul class="content">
-            @foreach ($project->tasks as $task)
-                <li>{{ $task->description }}</li>
-            @endforeach
-            </ul>
-        </div>
+
+        @if ($project->tasks->count())
+
+
+            <div>
+
+                @foreach ($project->tasks as $task)
+                    <div>
+                        <form action="/tasks/{{ $task->id }}"  method="POST">
+                            @csrf
+                                @method('patch')
+                                <label class="checkbox {{ $task->completed ? 'is_completed' : ''}}" for="completed">
+                                        <input type="checkbox" name="completed" onchange="this.form.submit()"
+                                        {{ $task->completed ? 'checked' : ''}}>
+                                        {{ $task->description }}
+                                      </label>
+                        </form>
+
+                    </div>
+                @endforeach
+
+            </div>
+
+
+        @endif
 
         <div><a href="/projects/{{ $project->id }}/edit">Edit this Project</a></div>
 </div>

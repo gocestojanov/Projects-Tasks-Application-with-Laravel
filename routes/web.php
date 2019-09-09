@@ -20,6 +20,8 @@ Route::get('/contact','PagesController@contact');
 
 
 Route::resource('projects', 'ProjectController');
+//Route::resource('projects', 'ProjectController');
+Route::patch('/tasks/{task}', 'ProjectTasksController@update');
 /*
 //show all projects
 Route::get('/projects','ProjectController@index');
