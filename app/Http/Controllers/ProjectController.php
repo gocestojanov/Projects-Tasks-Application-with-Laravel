@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
+use Illuminate\Support\Facades\Gate;
 
 class ProjectController extends Controller
 {
@@ -29,6 +30,17 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
+
+/*         if ($project->owner_id !== auth()->id()) {
+            abort(403);
+        }
+ */
+       // abort_if($project->owner_id !== auth()->id(),403);
+
+        $this->authorize('view',$project);
+
+        //auth()->user()->can('update',$project);
+
         return view('projects.show', compact('project'));
     }
 
