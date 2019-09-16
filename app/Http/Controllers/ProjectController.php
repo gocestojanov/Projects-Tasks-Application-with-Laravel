@@ -7,9 +7,21 @@ use App\Project;
 
 class ProjectController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index(Project $project)
     {
-        $projects = $project->all();
+
+
+        $projects = Project::where('owner_id', auth()->id())->get();
+        //$projects = $project->all();
+
+        //dd($projects);
 
         return view('projects.index', compact('projects'));
     }
@@ -53,6 +65,10 @@ class ProjectController extends Controller
         ]);
 
 
+        $validated['owner_id'] = auth()->id();
+
+        //dd($validated);
+        //dd(request()->all());
 
         Project::create($validated);
 
