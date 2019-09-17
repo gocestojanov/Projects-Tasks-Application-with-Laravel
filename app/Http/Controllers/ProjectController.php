@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ProjectCreated;
 use Illuminate\Http\Request;
 use App\Project;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends Controller
 {
@@ -24,6 +26,18 @@ class ProjectController extends Controller
 
         //dd($projects);
 
+        //dump($projects);
+
+
+/*         cache()->rememberForever('stats', function () {
+            return ['lessons'=>1399, 'hours'=>500000, 'series'=>100];
+        }); */
+
+
+/*         $stats = cache()->get('stats');
+
+        dump($stats);
+ */
         return view('projects.index', compact('projects'));
     }
 
@@ -37,7 +51,7 @@ class ProjectController extends Controller
  */
        // abort_if($project->owner_id !== auth()->id(),403);
 
-        $this->authorize('view',$project);
+       // $this->authorize('view',$project);
 
         //auth()->user()->can('update',$project);
 
@@ -68,7 +82,7 @@ class ProjectController extends Controller
         return view('projects.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
 
         $validated = request()->validate([
@@ -82,7 +96,12 @@ class ProjectController extends Controller
         //dd($validated);
         //dd(request()->all());
 
-        Project::create($validated);
+        $project = Project::create($validated);
+
+
+        Mail::to($request->user())->send(new ProjectCreated($project));
+
+
 
         return redirect('/projects');
     }
