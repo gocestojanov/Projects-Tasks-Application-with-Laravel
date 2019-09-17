@@ -39,9 +39,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function FunctionName(Request $var = null)
+    public function projects()
     {
-        # code...
+        return $this->hasMany(Project::class,'owner_id');
     }
 
 }

@@ -20,8 +20,12 @@ class ProjectController extends Controller
     public function index(Project $project)
     {
 
+        $projects = auth()->user()->projects;
 
-        $projects = Project::where('owner_id', auth()->id())->get();
+        //$projects = Project::where('owner_id', auth()->id())->get();
+
+
+
         //$projects = $project->all();
 
         //dd($projects);
