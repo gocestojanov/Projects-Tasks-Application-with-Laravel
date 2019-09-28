@@ -102,8 +102,10 @@ class ProjectController extends Controller
 
         $project = Project::create($validated);
 
+        //event(new ProjectCreated($project));
 
-        Mail::to($request->user())->send(new ProjectCreated($project));
+        //Mail::to($request->user())->send(new ProjectCreated($project));
+        //Mail::to($project->owner->email)->send(new ProjectCreated($project));
 
 
 

@@ -2,11 +2,30 @@
 
 namespace App;
 
+use App\Mail\ProjectCreated;
+use PhpParser\Node\Stmt\Static_;
+use App\Events\ProjectCreated as M;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
     protected $fillable = ['title','description','owner_id'];
+
+    protected $dispachesEvents = [
+        'created' => M::class
+    ];
+
+
+
+
+
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
     public function Tasks()
     {
