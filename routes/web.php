@@ -55,7 +55,7 @@ Route::get('/home', function (Request $request) {
 
     //return $request->session()->get('foobar');
 
-    $request->flash();
+    //$request->flash();
 
     return session('foobar', 'default');
 });
