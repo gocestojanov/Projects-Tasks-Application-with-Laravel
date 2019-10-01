@@ -107,7 +107,7 @@ class ProjectController extends Controller
         //Mail::to($request->user())->send(new ProjectCreated($project));
         //Mail::to($project->owner->email)->send(new ProjectCreated($project));
 
-
+        session()->flash('message','Your project has been created!');
 
         return redirect('/projects');
     }
