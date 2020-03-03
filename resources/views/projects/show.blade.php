@@ -16,30 +16,20 @@
 
 
 
-        @if ($project->tasks->count())
-
-
-            <div class='box'>
-
-                @foreach ($project->tasks as $task)
-                    <div>
-                        <form action="/tasks/{{ $task->id }}"  method="POST">
-                            @csrf
-                                @method('patch')
-                                <label class="checkbox {{ $task->completed ? 'is_completed' : ''}}" for="completed">
-                                        <input type="checkbox" name="completed" onchange="this.form.submit()"
-                                        {{ $task->completed ? 'checked' : ''}}>
-                                        {{ $task->description }}
-                                      </label>
-                        </form>
-
-                    </div>
-                @endforeach
-
-            </div>
-
-
-        @endif
+    @if ($project->tasks->count())
+        <div class='box'>
+            @foreach ($project->tasks as $task)
+                <form action="/tasks/{{ $task->id }}"  method="POST">
+                    @csrf
+                        @method('patch')
+                        <label class="checkbox {{ $task->completed ? 'is_completed' : ''}}" for="completed{{ $task->id }}">
+                            <input type="checkbox" name="completed" id="completed{{ $task->id }}" onchange="this.form.submit()"  {{ $task->completed ? 'checked' : ''}}>
+                            {{ $task->description }}
+                        </label>
+                </form>
+            @endforeach
+        </div>
+    @endif
 
 
 
@@ -63,18 +53,18 @@
             comment --}}
 
             <div class="control">
-                <textarea name="description" id="" cols="30" rows="10"
-                placeholder="project Description" class="textarea {{ $errors->has('description') ? 'is-danger' : '' }}" >{{ old('description') }}</textarea>
+                <textarea name="description" id="" cols="20" rows="5"
+                placeholder="Task Description" class="textarea {{ $errors->has('description') ? 'is-danger' : '' }}" >{{ old('description') }}</textarea>
 
             </div>
 
             <div class="field">
                 {{-- <input type="submit" value="Create Project"> --}}
-                <div class="control">
+                <div class="control" style="margin-top: 10px;">
 
-                <button type="submit" class="button is-link">Create Task</button>
+                    <button type="submit" class="button is-link">Create Task</button>
 
-            </div>
+                </div>
             </div>
 
 

@@ -24,24 +24,21 @@ class ProjectController extends Controller
 
         //$projects = Project::where('owner_id', auth()->id())->get();
 
-
-
         //$projects = $project->all();
 
-        //dd($projects);
+        // dd($projects);
 
-        //dump($projects);
+        // dump($projects);
+
+        // cache()->rememberForever('stats', function () {
+        //     return ['lessons'=>1399, 'hours'=>500000, 'series'=>100];
+        // }); */
 
 
-/*         cache()->rememberForever('stats', function () {
-            return ['lessons'=>1399, 'hours'=>500000, 'series'=>100];
-        }); */
+        //  $stats = cache()->get('stats');
 
+        // dump($stats);
 
-/*         $stats = cache()->get('stats');
-
-        dump($stats);
- */
         return view('projects.index', compact('projects'));
     }
 
@@ -49,10 +46,10 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
 
-/*         if ($project->owner_id !== auth()->id()) {
-            abort(403);
-        }
- */
+        // if ($project->owner_id !== auth()->id()) {
+        //     abort(403);
+        // }
+
        // abort_if($project->owner_id !== auth()->id(),403);
 
        // $this->authorize('view',$project);
@@ -78,7 +75,7 @@ class ProjectController extends Controller
     {
         $project->update(request(['title','description']));
 
-        return redirect('/projects');
+        return redirect('/projects/' . $project->id);
     }
 
     public function create()

@@ -20,7 +20,11 @@ Route::get('/contact','PagesController@contact');
 
 
 
+
 Route::resource('projects', 'ProjectController');
+
+
+
 //Route::resource('projects', 'ProjectController');
 Route::patch('/tasks/{task}', 'ProjectTasksController@update');
 Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
@@ -41,21 +45,25 @@ Route::delete('/projects/{project}', 'ProjectController@destroy');
 
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/home', function (Request $request) {
+Route::get('/home', 'HomeController@index')->name('home');
 
-    $user = App\User::first();
+// Route::get('/home', function (Request $request) {
 
-    $user->notify(new SubscriptionRenewalFailed);
+//     $user = App\User::first();
 
-    //session(['name' => 'John Doe']);
+//     $user->notify(new SubscriptionRenewalFailed);
+
+//     session(['name' => 'John Doe']);
 
     //return session('name');
 
     //return $request->session()->get('foobar');
 
-    //$request->flash();
+    // $request->flash();
 
-    return session('foobar', 'default');
-});
+    // session('foobar', 'default');
+
+//     return "Goce";
+// });
+
