@@ -28,6 +28,7 @@ Route::resource('projects', 'ProjectController');
 //Route::resource('projects', 'ProjectController');
 Route::patch('/tasks/{task}', 'ProjectTasksController@update');
 Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
+Route::delete('/tasks/{task}', 'ProjectTasksController@delete');
 /*
 //show all projects
 Route::get('/projects','ProjectController@index');

@@ -6,6 +6,8 @@
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+    <script src="https://kit.fontawesome.com/f851d6782e.js" crossorigin="anonymous"></script>
+
 
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 

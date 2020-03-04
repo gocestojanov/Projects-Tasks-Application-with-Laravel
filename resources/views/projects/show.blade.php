@@ -5,28 +5,65 @@
 @section('content')
 
 <div class="container">
-        <div class="notification">
-                <h1>Show Project {{ $project->id }}</h1>
-        </div>
 
-        <div><a href="/projects/{{ $project->id }}/edit">Edit this Project</a></div>
-        <div class="title">{{ $project->title }}</div>
 
-        <p class="subtitle">{{ $project->description }}</p>
+
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+            <ul>
+                <li>
+                    <span class="icon" style="font-size: 18px; color: Dodgerblue;">
+                      <i class="fas fa-home" aria-hidden="true"></i>
+                    </span>
+                    <a href="/" >Home</a>
+                </li>
+                <li class="is-active"><a href="#">Show Project {{ $project->id }}: {{ $project->title }}</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact" aria-current="page">Contact</a></li>
+            </ul>
+        </nav>
+
+
+        <nav class="level">
+            <div class="level-left">
+                <h1 class="title">{{ $project->title }}</h1>
+            </div>
+            <div class="level-right">
+
+                <a class="button" href="/projects/{{ $project->id }}/edit">Edit this Project</a>
+            </div>
+        </nav>
+
+        <h2 class="subtitle">{{ $project->description }}</h2>
 
 
 
     @if ($project->tasks->count())
         <div class='box'>
             @foreach ($project->tasks as $task)
-                <form action="/tasks/{{ $task->id }}"  method="POST">
-                    @csrf
-                        @method('patch')
-                        <label class="checkbox {{ $task->completed ? 'is_completed' : ''}}" for="completed{{ $task->id }}">
-                            <input type="checkbox" name="completed" id="completed{{ $task->id }}" onchange="this.form.submit()"  {{ $task->completed ? 'checked' : ''}}>
-                            {{ $task->description }}
-                        </label>
+
+            <nav class="level">
+                <div class="level-left">
+                    <form action="/tasks/{{ $task->id }}"  method="POST">
+                            @csrf
+                            @method('patch')
+                            <label class="checkbox {{ $task->completed ? 'is_completed' : ''}}" for="completed{{ $task->id }}">
+                                <input type="checkbox" name="completed" id="completed{{ $task->id }}" onchange="this.form.submit()"  {{ $task->completed ? 'checked' : ''}}>
+                                {{ Str::limit($task->description,150) }}
+                            </label>
+                    </form>
+                 </div>
+
+                <div class="level-right">
+                 <form action="/tasks/{{ $task->id }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <div class="control">
+                            <input  class="button is-primary" type="button" name="delete" id="delete" onclick="this.form.submit()" value="delete">
+                        </div>
                 </form>
+                 </div>
+            </nav>
+
             @endforeach
         </div>
     @endif
