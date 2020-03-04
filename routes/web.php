@@ -14,9 +14,10 @@
 use App\Notifications\SubscriptionRenewalFailed;
 use Illuminate\Support\Facades\Request;
 
-Route::get('/','PagesController@home');
 Route::get('/about','PagesController@about');
 Route::get('/contact','PagesController@contact');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/','PagesController@home');
 
 
 
@@ -47,7 +48,6 @@ Route::delete('/projects/{project}', 'ProjectController@destroy');
 Auth::routes();
 
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 // Route::get('/home', function (Request $request) {
 

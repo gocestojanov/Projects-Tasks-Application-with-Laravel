@@ -14,11 +14,12 @@ class PagesController extends Controller
             'Go to work',
             'Go to concert'
         ];
-    
-    
-        //        return view('welcome')->withTasks($tasks)->withFoo('foo');
+
+
+        // return view('welcome')->withTasks($tasks)->withFoo('foo');
         return view('welcome', ['tasks'=>$tasks, 'foo'=> request('title')]);
-    
+
+
     }
 
 

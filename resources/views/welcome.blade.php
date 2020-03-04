@@ -1,17 +1,22 @@
 @extends('layout')
-    
-@section('title','Home Page')
-    
+
+@section('title','Projects App')
+
+
+
 
 @section('content')
-    <h1>Hero we go again!!!</h1>
 
-    <ul>
-    @foreach ($tasks as $task)
-         <li>{{ $task }}</li>
-    @endforeach
-    </ul>
+        <h1>Hero we go again!!!</h1>
 
-    {{ $foo }}
+        <ul>
+        @foreach ($tasks as $task)
+            <li>{{ $task }}</li>
+        @endforeach
+        </ul>
 
-@endsection    
+        {{ $foo }}
+
+@endsection
+
+

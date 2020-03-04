@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('title','Show Project {{ $project->id }}')
 
@@ -8,10 +8,10 @@
 
 
 
-        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <nav class="breadcrumb is-small" aria-label="breadcrumbs">
             <ul>
                 <li>
-                    <span class="icon" style="font-size: 18px; color: Dodgerblue;">
+                    <span class="icon is-small" style="color: Dodgerblue;">
                       <i class="fas fa-home" aria-hidden="true"></i>
                     </span>
                     <a href="/" >Home</a>

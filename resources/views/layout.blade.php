@@ -29,15 +29,62 @@
 
     </div>
 
-    <ul>
+    <div class="container">
 
-    <li><a href="/">Home </a> </li>
-    <li><a href="/about">About </a> us </li>
-    <li><a href="/contact">Contact </a> us to learn more.</li>
+    {{-- Navigation Menu --}}
 
-    </ul>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          {{-- <a class="navbar-item" href="https://bulma.io"> --}}
+            <img src="images/logo_website_ivil_digitalagency.png" width="150" height="95">
+          {{-- </a> --}}
+
+          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item" href="/home">
+              Home
+            </a>
+
+            <a class="navbar-item" href="/about">
+                About
+            </a>
+
+            <a class="navbar-item" href="/contact" >
+                Contact
+            </a>
+
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-primary">
+                  <strong>Sign up</strong>
+                </a>
+                <a class="button is-light">
+                  Log in
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {{-- End Navigation Menu --}}
+
+
+
 
     @yield('content')
+
+</div>
 
 <script src= {{ mix('js/app.js') }}></script>
 </body>
