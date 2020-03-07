@@ -36,7 +36,7 @@
     <nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
         {{-- <div class="navbar-brand"> --}}
           <a class="" href="/">
-            <img src="../images/logo_website_ivil_digitalagency.png" width="150" height="95">
+            <img src="/images/logo_website_ivil_digitalagency.png" width="150" height="95" >
           </a>
         {{-- </div> --}}
 

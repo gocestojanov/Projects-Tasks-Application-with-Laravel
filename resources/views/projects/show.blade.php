@@ -6,6 +6,8 @@
 
 <div class="container">
 
+@component('projects.verticalmenu')
+
 
 
         <nav class="breadcrumb is-small" aria-label="breadcrumbs">
@@ -48,7 +50,7 @@
                             @method('patch')
                             <label class="checkbox {{ $task->completed ? 'is_completed' : ''}}" for="completed{{ $task->id }}">
                                 <input type="checkbox" name="completed" id="completed{{ $task->id }}" onchange="this.form.submit()"  {{ $task->completed ? 'checked' : ''}}>
-                                {{ Str::limit($task->description,150) }}
+                                {{ Str::limit($task->description,130) }}
                             </label>
                     </form>
                  </div>
@@ -108,6 +110,8 @@
 
             @include('errors')
         </form>
+
+        @endcomponent
 
 </div>
 
