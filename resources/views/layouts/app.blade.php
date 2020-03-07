@@ -34,15 +34,15 @@
     {{-- Navigation Menu --}}
 
     <nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          {{-- <a class="navbar-item" href="https://bulma.io"> --}}
+        {{-- <div class="navbar-brand"> --}}
+          <a class="" href="/">
             <img src="../images/logo_website_ivil_digitalagency.png" width="150" height="95">
-          {{-- </a> --}}
-        </div>
+          </a>
+        {{-- </div> --}}
 
         <div id="navbarBasicExample" class="navbar-menu">
           <div class="navbar-start" style="margin-left:10ch;">
-            <a class="navbar-item" href="/home">
+            <a class="navbar-item" href="/">
               Home
             </a>
 
@@ -72,17 +72,20 @@
                             @endif
                         @else
 
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                            <a href="/home" class="button is-success">
+                                <span class="icon is-small is-left" style="margin-right:0.2em;">
+                                    <i class="fas fa-user"></i>
+                                </span>
 
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
+                                {{ Auth::user()->name }}
+                            </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
+                            <a class="button is-primary" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
 
                         @endguest
                     </ul>

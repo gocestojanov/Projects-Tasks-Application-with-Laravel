@@ -16,20 +16,17 @@ use Illuminate\Support\Facades\Request;
 
 Route::get('/about','PagesController@about');
 Route::get('/contact','PagesController@contact');
-Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/','PagesController@home');
-
-
-
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('projects', 'ProjectController');
 
-
-
-//Route::resource('projects', 'ProjectController');
 Route::patch('/tasks/{task}', 'ProjectTasksController@update');
 Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
 Route::delete('/tasks/{task}', 'ProjectTasksController@delete');
+Auth::routes();
+
+
 /*
 //show all projects
 Route::get('/projects','ProjectController@index');
@@ -44,10 +41,6 @@ Route::patch('/projects/{project}', 'ProjectController@update');
 //delete project
 Route::delete('/projects/{project}', 'ProjectController@destroy');
  */
-
-Auth::routes();
-
-
 
 // Route::get('/home', function (Request $request) {
 
