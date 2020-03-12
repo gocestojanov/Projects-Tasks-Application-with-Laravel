@@ -8,7 +8,7 @@
         <div class="column is-one-third"></div>
         <div class="column is-one-third">
             <div class="box">
-                <div class="title">{{ __('Login') }}</div>
+                <div class="title" style="text-align: center;">{{ __('auth.Login') }}</div>
 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf

@@ -8,7 +8,7 @@
         <div class="column is-one-third">
             <div class="box">
 
-            <div class="title">{{ __('Register') }}</div>
+            <div class="title" style="text-align:center;font-size:x-large;">{{ __('auth.Register') }}</div>
 
                 <div class="form">
                     <form method="POST" action="{{ route('register') }}">

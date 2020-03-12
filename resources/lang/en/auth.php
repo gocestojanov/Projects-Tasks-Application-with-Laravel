@@ -16,5 +16,7 @@ return [
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'register' => 'Sign up',
+    'Login' => 'Login to Project VS Tasks with your Email',
+    'Register' => 'Join Project VS Tasks and Start Creating Your First Real Project',
 
 ];
