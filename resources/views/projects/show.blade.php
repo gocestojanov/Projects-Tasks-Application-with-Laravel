@@ -19,8 +19,6 @@
                     <a href="/" >Home</a>
                 </li>
                 <li class="is-active"><a href="#">Show Project {{ $project->id }}: {{ $project->title }}</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact" aria-current="page">Contact</a></li>
             </ul>
         </nav>
 
@@ -50,7 +48,7 @@
                             @method('patch')
                             <label class="checkbox {{ $task->completed ? 'is_completed' : ''}}" for="completed{{ $task->id }}">
                                 <input type="checkbox" name="completed" id="completed{{ $task->id }}" onchange="this.form.submit()"  {{ $task->completed ? 'checked' : ''}}>
-                                {{ Str::limit($task->description,130) }}
+                                <span class="is-size-8 has-text-weight-normal" style="{{ $task->completed ? 'text-decoration: line-through;' : ''}}">{{ Str::limit($task->description,130) }}</span>
                             </label>
                     </form>
                  </div>
