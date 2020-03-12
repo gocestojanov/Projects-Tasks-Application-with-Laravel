@@ -6,9 +6,9 @@
                         General
                     </p>
                     <ul class="menu-list">
-                    <li><a class="is-active">Dashboard</a></li>
-                    <li><a href="/projects">Projects</a></li>
-                    <li><a href="/projects/create">Create Project</a></li>
+                    <li><a id="link1" class="{{ request('active1') ? 'is-active' : '' }}" href="/home?active1=yes" >Dashboard</a></li>
+                    <li><a id="link2" class="{{ request('active2') ? 'is-active' : '' }}" href="/projects?active2=yes">Projects</a></li>
+                    <li><a id="link3" class="{{ request('active3') ? 'is-active' : '' }}" href="/projects/create?active3=yes" >Create Project</a></li>
                     </ul>
                     <p class="menu-label">
                     Administration
