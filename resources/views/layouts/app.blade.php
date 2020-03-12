@@ -34,11 +34,11 @@
     {{-- Navigation Menu --}}
 
     <nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
-        {{-- <div class="navbar-brand"> --}}
+        <div class="navbar-brand">
           <a class="" href="/">
-            <img src="/images/logo_website_ivil_digitalagency.png" width="150" height="95" >
+            <img src="/images/logo_project_tasks.png" width="150" height="150" >
           </a>
-        {{-- </div> --}}
+        </div>
 
         <div id="navbarBasicExample" class="navbar-menu">
           <div class="navbar-start" style="margin-left:10ch;">
