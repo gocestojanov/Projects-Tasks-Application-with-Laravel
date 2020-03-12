@@ -72,7 +72,7 @@
                             @endif
                         @else
 
-                            <a href="/home" class="button is-success">
+                            <a href="/home?active1=yes" class="button is-success">
                                 <span class="icon is-small is-left" style="margin-right:0.2em;">
                                     <i class="fas fa-user"></i>
                                 </span>
