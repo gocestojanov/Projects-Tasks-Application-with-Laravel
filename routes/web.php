@@ -27,6 +27,9 @@ Route::delete('/tasks/{task}', 'ProjectTasksController@delete');
 Auth::routes();
 
 
+
+
+
 /*
 //show all projects
 Route::get('/projects','ProjectController@index');
