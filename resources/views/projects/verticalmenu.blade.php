@@ -11,7 +11,7 @@
                     <li><a id="link3" class="{{ request('active3') ? 'is-active' : '' }}" href="/projects/create?active3=yes" >Create Project</a></li>
                     </ul>
                     <p class="menu-label">
-                    Administration 1
+                    Administration 2
                     </p>
                     {{-- <ul class="menu-list">
                     <li><a>Team Settings</a></li>
