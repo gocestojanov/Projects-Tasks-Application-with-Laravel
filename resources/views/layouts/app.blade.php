@@ -101,6 +101,12 @@
              @yield('content')
      </div>
 
-
+     <footer class="footer" style="padding:2ex; margin-top:10ex;">
+        <div class="content has-text-centered">
+          <p>
+            © 2020 Project & Tasks App   |   All Rights Reserved   | <strong>Project & Tasks</strong> by <a href="http://laravel.ivil.com.mk/contact">Goce Stojanov</a>.
+          </p>
+        </div>
+      </footer>
  </body>
 </html>
