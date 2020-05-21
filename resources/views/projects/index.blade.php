@@ -20,7 +20,9 @@
                   <div class="media-content">
                     <div class="content">
                       <p>
-                        <strong><a href="/projects/{{$project->id}}">{{ $project->title }}</a> </strong> <small>@johnsmith</small> <small>31m</small>
+                        <strong><a href="/projects/{{$project->id}}">{{ $project->title }}</a> </strong>
+                        <small> Created By {{ $project->owner->name }} </small>
+                        <small style="font-style: italic; color: indianred;">on {{ $project->created_at->format('d M Y') }}</small>
                         <br>
                         {{ $project->description }}
                       </p>
@@ -29,12 +31,6 @@
                 </article>
             </div>
             @endforeach
-
-
-
-
-
-
 
             @if ( session('message'))
                 <p>{{ session('message') }}</p>
