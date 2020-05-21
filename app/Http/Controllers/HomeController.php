@@ -23,6 +23,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $number_of_projects = auth()->user()->projects->count();
+
+        // dd($number_of_projects);
+
+        return view('home', [ 'number_of_projects' => $number_of_projects, ]);
     }
 }
