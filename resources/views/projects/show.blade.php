@@ -18,23 +18,38 @@
                     </span>
                     <a href="/" >Home</a>
                 </li>
-                <li class="is-active"><a href="#">Show Project {{ $project->id }}: {{ $project->title }}</a></li>
+                    <li class="is-active"><a href="#">Show Project {{ $project->id }}: {{ $project->title }}</a></li>
             </ul>
         </nav>
 
 
-        <nav class="level">
-            <div class="level-left">
-                <h1 class="title">{{ $project->title }}</h1>
-            </div>
-            <div class="level-right">
 
+        <div class="box">
+            <article class="media">
+              <div class="media-left">
+                <figure class="image is-64x64 is-square">
+                    <img src="{{ asset('simages/' . $project->image )}}"  alt="Image" height="64" width="64">
+                </figure>
+            </div>
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    <strong>{{ $project->title }}</strong>
+                    <small> Created By {{ $project->owner->name }} </small>
+                    <small style="font-style: italic; color: indianred;">on {{ $project->created_at->format('d M Y') }}</small>
+
+                    <br>
+                    {{ $project->description }}
+
+                  </p>
+                </div>
+              </div>
+              <div class="media-right">
                 <a class="button" href="/projects/{{ $project->id }}/edit">Edit this Project</a>
-            </div>
-        </nav>
+              </div>
 
-        <h2 class="subtitle">{{ $project->description }}</h2>
-
+            </article>
+          </div>
 
 
     @if ($project->tasks->count())
@@ -69,7 +84,7 @@
     @endif
 
 
-
+        <h1 class="title is-4">Define new Task for this project</h1>
 
         <form action="/projects/{{ $project->id }}/tasks"  method="POST" class="box">
             @csrf
