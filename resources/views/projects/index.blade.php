@@ -13,8 +13,8 @@
             <div class="box">
                 <article class="media">
                   <div class="media-left">
-                    <figure class="image is-64x64">
-                      <img src="{{ asset('simages/' . $project->image )}}"  alt="Image">
+                    <figure class="image is-64x64 is-square">
+                      <img src="{{ asset('simages/' . $project->image )}}"  alt="Image" height="64" width="64">
                     </figure>
                   </div>
                   <div class="media-content">
