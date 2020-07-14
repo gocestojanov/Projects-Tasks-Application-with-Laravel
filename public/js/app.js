@@ -49359,6 +49359,14 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 });
+var fileInput = document.querySelector('#file-js-example input[type=file]');
+
+fileInput.onchange = function () {
+  if (fileInput.files.length > 0) {
+    var fileName = document.querySelector('#file-js-example .file-name');
+    fileName.textContent = fileInput.files[0].name;
+  }
+};
 
 /***/ }),
 

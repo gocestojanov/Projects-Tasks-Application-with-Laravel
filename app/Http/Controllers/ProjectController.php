@@ -20,7 +20,11 @@ class ProjectController extends Controller
     public function index(Project $project)
     {
 
+
+        // dd($path = public_path());
+
         $projects = auth()->user()->projects;
+
 
         //$projects = Project::where('owner_id', auth()->id())->get();
 
@@ -88,17 +92,23 @@ class ProjectController extends Controller
 
         $validated = request()->validate([
             'title' => 'required|min:3',
-            'description' => 'required|min:3'
+            'description' => 'required|min:3',
+            'image' => 'required|min:3',
         ]);
+
+        $name = $request->file('image')->getClientOriginalName();
+        $path = $request->file('image')->storeAs('images', $name);
+        // dd($path);
 
 
         $validated['owner_id'] = auth()->id();
+        $validated['image'] = $path;
 
-        //dd($validated);
+        // dd($validated);
         //dd(request()->all());
 
         $project = Project::create($validated);
-
+        // dd($project);
         //event(new ProjectCreated($project));
 
         //Mail::to($request->user())->send(new ProjectCreated($project));
