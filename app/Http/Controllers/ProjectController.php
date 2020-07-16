@@ -77,7 +77,20 @@ class ProjectController extends Controller
 
     public function update(Project $project)
     {
-        $project->update(request(['title','description']));
+
+        $validated = request()->validate([
+            'title' => 'required|min:3',
+            'description' => 'required|min:3',
+            'image' => 'required|min:3',
+        ]);
+
+        $name = request()->file('image')->getClientOriginalName();
+        $path = request()->file('image')->storeAs('images', $name);
+
+        $validated['owner_id'] = auth()->id();
+        $validated['image'] = $path;
+
+        $project->update($validated);
 
         return redirect('/projects/' . $project->id);
     }

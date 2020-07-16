@@ -41,14 +41,28 @@
 
 
 </div>
+<div class="field">
+    <label for="title" class="label">Project Image</label>
+
+
+        <img src="{{ asset('simages/' . $project->image )}}"  alt="Image" height="64" width="64">
+
+
+</div>
 
 
 
-
-<form action="/projects/{{ $project->id }}" method="post">
+<form action="/projects/{{ $project->id }}" method="post" enctype="multipart/form-data">
 
     @method('patch')
     @csrf
+
+
+
+
+
+
+
 
     <div class="field">
             <label for="title" class="label">Title</label>
@@ -68,10 +82,32 @@
     </div>
 
 
+    <div id="file-js-example" class="file has-name">
+        <label class="file-label">
+          <input class="file-input" type="file" name="image">
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Change project image…
+            </span>
+          </span>
+          <span class="file-name">
+            No file uploaded
+          </span>
+
+
+        </label>
+      </div>
+
+<br>
+
     <div class="field ">
             <button type="submit" class="button is-link">Update Project</button>
     </div>
 
+    @include('errors')
 
 </form>
 

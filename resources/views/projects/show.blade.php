@@ -105,7 +105,7 @@
             comment --}}
 
             <div class="control">
-                <textarea name="description" id="" cols="20" rows="5"
+                <textarea name="description"  cols="20" rows="5"
                 placeholder="Task Description" class="textarea {{ $errors->has('description') ? 'is-danger' : '' }}" >{{ old('description') }}</textarea>
 
             </div>
