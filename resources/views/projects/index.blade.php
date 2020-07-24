@@ -22,9 +22,12 @@
                       <p>
                         <strong><a href="/projects/{{$project->id}}">{{ $project->title }}</a> </strong>
                         <small> Created By {{ $project->owner->name }} </small>
-                        <small style="font-style: italic; color: indianred;">on {{ $project->created_at->format('d M Y') }}</small>
+                        <small style="font-style: italic; color:darkgray;">on {{ $project->created_at->format('d M Y') }}</small>
                         <br>
                         {{ $project->description }}
+                        <br>
+                        <small>Last updated by {{ $project->owner->name }} </small>
+                        <small style="font-style: italic; color: indianred;">on {{ $project->updated_at->format('d M Y') }}</small>
                       </p>
                     </div>
                   </div>
