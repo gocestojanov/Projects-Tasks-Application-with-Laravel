@@ -85,6 +85,8 @@ class ProfileController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->image = $request->file('image')->getClientOriginalName();
+        $path = request()->file('image')->storeAs('images', $user->image);
+
 
         // dd($user);
 
