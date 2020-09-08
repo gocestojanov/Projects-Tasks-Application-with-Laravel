@@ -11,8 +11,12 @@
                     <li><a id="link3" class="{{ request('active3') ? 'is-active' : '' }}" href="/projects/create?active3=yes" >Create Project</a></li>
                     </ul>
                     <p class="menu-label">
-                    Administration 2
+                    Your Profile
                     </p>
+                    <ul class="menu-list">
+                        <li><a id="link2" class="{{ request('active4') ? 'is-active' : '' }}" href="/profile?active4=yes">Profile Settings</a></li>
+                    </ul>
+
                     {{-- <ul class="menu-list">
                     <li><a>Team Settings</a></li>
                     <li>
@@ -28,7 +32,7 @@
                     <li><a>Authentication</a></li>
                     </ul> --}}
                     <p class="menu-label">
-                    Transactions
+                    {{-- Transactions --}}
                     </p>
                     {{-- <ul class="menu-list">
                     <li><a>Payments</a></li>
