@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "25dedab19928d4fc44fb866b531917cf",
+    "content-hash": "ad28c58edcbbfe31aa75c46e2fb4696f",
     "packages": [
         {
             "name": "brick/math",
@@ -1089,6 +1089,58 @@
                 "laravel"
             ],
             "time": "2020-09-09T22:26:00+00:00"
+        },
+        {
+            "name": "laravel/installer",
+            "version": "v4.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/installer.git",
+                "reference": "8f736615f65cc5ac3041ed92ffcc5e65f8284219"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/installer/zipball/8f736615f65cc5ac3041ed92ffcc5e65f8284219",
+                "reference": "8f736615f65cc5ac3041ed92ffcc5e65f8284219",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3",
+                "symfony/console": "^4.0|^5.0",
+                "symfony/process": "^4.2|^5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0"
+            },
+            "bin": [
+                "bin/laravel"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Installer\\Console\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel application installer.",
+            "keywords": [
+                "laravel"
+            ],
+            "time": "2020-09-08T18:59:21+00:00"
         },
         {
             "name": "laravel/telescope",
