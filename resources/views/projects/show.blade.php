@@ -16,9 +16,9 @@
                     <span class="icon is-small" style="color: Dodgerblue;">
                       <i class="fas fa-home" aria-hidden="true"></i>
                     </span>
-                    <a href="/" >Home</a>
+                    <a href="/home" >Home</a>
                 </li>
-                    <li class="is-active"><a href="#">Show Project {{ $project->id }}: {{ $project->title }}</a></li>
+                    <li class="is-active"><a href="#">Project: {{ $project->title }}</a></li>
             </ul>
         </nav>
 
@@ -53,34 +53,37 @@
 
 
     @if ($project->tasks->count())
-        <div class='box'>
-            @foreach ($project->tasks as $task)
 
-            <nav class="level">
-                <div class="level-left">
+        @foreach ($project->tasks as $task)
+            <div class='box'>
+                <div class="columns">
+                    <div class="column is-11">
                     <form action="/tasks/{{ $task->id }}"  method="POST">
                             @csrf
                             @method('patch')
                             <label class="checkbox {{ $task->completed ? 'is_completed' : ''}}" for="completed{{ $task->id }}">
-                                <input type="checkbox" name="completed" id="completed{{ $task->id }}" onchange="this.form.submit()"  {{ $task->completed ? 'checked' : ''}}>
-                                <span class="is-size-8 has-text-weight-normal" style="{{ $task->completed ? 'text-decoration: line-through;' : ''}}">{{ Str::limit($task->description,130) }}</span>
+                                <div class="content">
+                                    <input type="checkbox" name="completed" id="completed{{ $task->id }}" onchange="this.form.submit()"  {{ $task->completed ? 'checked' : ''}}>
+                                    <span class="is-size-8 has-text-weight-normal" style="{{ $task->completed ? 'text-decoration: line-through;' : ''}}">{{ $task->description }}</span>
+                                </div>
+
                             </label>
                     </form>
-                 </div>
+                    </div>
 
-                <div class="level-right">
-                 <form action="/tasks/{{ $task->id }}" method="POST">
-                        @csrf
-                        @method('delete')
-                        <div class="control">
-                            <input  class="button is-primary" type="button" name="delete" id="delete" onclick="this.form.submit()" value="delete">
-                        </div>
-                </form>
+                    <div class="column">
+                    <form action="/tasks/{{ $task->id }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <div class="control">
+                                <input  class="button is-primary" type="button" name="delete" id="delete" onclick="this.form.submit()" value="delete">
+                            </div>
+                    </form>
+                    </div>
                  </div>
-            </nav>
+            </div>
+        @endforeach
 
-            @endforeach
-        </div>
     @endif
 
 

@@ -35,33 +35,27 @@
 
     <nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-          <a class="" href="/">
-            <img src="/images/logo_project_tasks.png" width="150" height="150" >
-          </a>
+                @guest
+                    <a class="" href="/">
+                @else
+                    <a class="" href="/home">
+                @endguest
+                        <img src="/images/logo_project_tasks.png" width="150" height="150" >
+                    </a>
         </div>
-
         <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start" style="margin-left:10ch;">
-            <a class="navbar-item" href="/">
-              Home
-            </a>
-
-            <a class="navbar-item" href="/about">
-                About
-            </a>
-
-            <a class="navbar-item" href="/contact" >
-                Contact
-            </a>
-
-          </div>
-
-          <div class="navbar-end">
+                @guest
+                <div class="navbar-start" style="margin-left:10ch;">
+                    <a class="navbar-item" href="/">Home</a>
+                    <a class="navbar-item" href="/about">About</a>
+                    <a class="navbar-item" href="/contact" >Contact</a>
+                </div>
+                @endguest
+        <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
 
@@ -72,24 +66,35 @@
                             @endif
                         @else
 
-                            <a href="/home?active1=yes" class="button is-success">
-                                <span class="icon is-small is-left" style="margin-right:0.2em;">
-                                    <i class="fas fa-user"></i>
-                                </span>
+                        <div class="dropdown is-hoverable">
+                            <div class="dropdown-trigger">
 
-                                {{ Auth::user()->name }}
-                            </a>
+                                <button href="/home?active1=yes" class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                    <span class="image is-24x24">
+                                        <img src="{{ asset('simages/') .  '/images/' . auth()->user()->image }}" alt="" height="50" width="50" class="is-rounded">
+                                    </span>
+                                    &nbsp;
+                                    {{ Auth::user()->name }}
+                                    <span class="icon is-small">
+                                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                </button>
+                            </div>
 
-                            <a class="button is-primary" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
+                            <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                              <div class="dropdown-content">
+                                    <a id="" class="dropdown-item" href="/profile">Profile Settings</a>
 
+                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                               </div>
+                            </div>
+                        </div>
                         @endguest
-                    </ul>
-                </a>
               </div>
             </div>
           </div>
