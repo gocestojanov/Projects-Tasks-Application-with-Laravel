@@ -8,11 +8,11 @@
 <div class="container">
 
     @component('projects.verticalmenu')
-    <div class="notification">
+
 
         <div class="columns">
             <div class="column">
-                <h1 class="title is-6">Edit Project</h1>
+                <h1 class="title">Edit Project</h1>
             </div>
 
             <div class="column">
@@ -35,7 +35,7 @@
             </div>
         </div>
 
-    </div>
+
     <div class="field">
         <label for="title" class="label">Project Image</label>
 

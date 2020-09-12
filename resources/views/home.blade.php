@@ -13,6 +13,8 @@
             <h1 class="title">Welcome!</h1>
             <h1 class="subtitle is-6">You are logged in!</h1> <br>
 
+
+            <div class="box">
             <article class="media">
                 <figure class="media-left">
                   <p class="image is-64x64">
@@ -24,7 +26,11 @@
                     <p>
                       <strong>{{ Auth::user()->name }}</strong> <small> {{ Auth::user()->email }} </small> <small style="color: darkgray">31m</small>
                       <br>
-                       Congratulations you have <span style="color:cornflowerblue "><i class="fas fa-tasks"></i> {{ $number_of_projects }} </span> <a href="/projects">Projects</a>  on your list!
+                         Congratulations you have
+                         <span style="color:cornflowerblue "><i class="fas fa-tasks"></i> {{ $number_of_projects }}
+                        </span>
+                        <a href="/projects">Projects</a>
+                        on your list!
                     </p>
                   </div>
 
@@ -42,11 +48,9 @@
                     </div>
                   </nav> --}}
                 </div>
-                <div class="media-right">
-                  <button class="delete"></button>
-                </div>
-              </article>
 
+              </article>
+            </div>
 
         @endcomponent
 

@@ -7,9 +7,9 @@
 <div class="container">
 
 @component('projects.verticalmenu')
-        <div class="notification">
-            <h1>Create new Project</h1>
-        </div>
+
+            <h1 class="title">Create new Project</h1>
+
 
 
 

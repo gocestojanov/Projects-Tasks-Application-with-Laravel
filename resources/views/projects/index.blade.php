@@ -7,7 +7,17 @@
 
     @component('projects.verticalmenu')
 
+    <div class="columns">
+        <div class="column">
             <h1 class="title">Browse Projects</h1>
+        </div>
+        <div class="column has-text-right">
+            <a id="" class="button" href="/projects/create" >Create Project</a>
+        </div>
+    </div>
+
+
+
 
             @foreach ($projects as $project)
             <div class="box">

@@ -60,6 +60,9 @@ class ProjectController extends Controller
 
         //auth()->user()->can('update',$project);
 
+            // dd($project->statusname());
+
+
         return view('projects.show', compact('project'));
     }
 
@@ -86,6 +89,7 @@ class ProjectController extends Controller
 
         $name = request()->file('image')->getClientOriginalName();
         $path = request()->file('image')->storeAs('images', $name);
+
 
         $validated['owner_id'] = auth()->id();
         $validated['image'] = $path;
