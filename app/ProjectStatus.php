@@ -11,6 +11,9 @@ class ProjectStatus extends Model
 
     use HasFactory;
 
+
+    protected $fillable = ['name'];
+
     // public function project()
     // {
     //     return $this->belongsTo(Project::class, 'status');

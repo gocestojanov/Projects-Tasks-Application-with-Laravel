@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\ProjectStatus;
 use Illuminate\Database\Seeder;
 
 class ProjectStatusSeeder extends Seeder
@@ -13,6 +14,6 @@ class ProjectStatusSeeder extends Seeder
      */
     public function run()
     {
-        //
+        ProjectStatus::factory()->times(3)->create();
     }
 }
