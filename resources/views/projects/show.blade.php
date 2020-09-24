@@ -41,8 +41,11 @@
                     {{ $project->description }}
                     <br>
                     <small>
+                        @isset($project->statusname)
                         <progress class="progress is-primary" value="15" max="100">15%</progress>
                         <span class="tag is-primary is-light">Status: {{ $project->statusname->name }}</span>
+                        @endisset
+
 
                     </small>
                   </p>
