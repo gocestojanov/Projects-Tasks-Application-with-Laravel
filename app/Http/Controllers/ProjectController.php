@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\ProjectCreated;
 use Illuminate\Http\Request;
 use App\Project;
+use App\ProjectStatus;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 
@@ -68,7 +69,9 @@ class ProjectController extends Controller
 
     public function edit(Project $project)
     {
-        return view('projects.edit',compact('project'));
+        $projectstatus = ProjectStatus::all();
+
+        return view('projects.edit',compact(['project','projectstatus']));
     }
 
     public function destroy(Project $project)
@@ -85,6 +88,7 @@ class ProjectController extends Controller
             'title' => 'required|min:3',
             'description' => 'required|min:3',
             'image' => 'required|min:3',
+            'status' => 'integer',
         ]);
 
         $name = request()->file('image')->getClientOriginalName();
@@ -94,6 +98,7 @@ class ProjectController extends Controller
         $validated['owner_id'] = auth()->id();
         $validated['image'] = $path;
 
+
         $project->update($validated);
 
         return redirect('/projects/' . $project->id);
@@ -101,7 +106,9 @@ class ProjectController extends Controller
 
     public function create()
     {
-        return view('projects.create');
+        $projectstatus = ProjectStatus::all();
+
+        return view('projects.create', compact('projectstatus'));
     }
 
     public function store(Request $request)
@@ -111,6 +118,8 @@ class ProjectController extends Controller
             'title' => 'required|min:3',
             'description' => 'required|min:3',
             'image' => 'required|min:3',
+            'status' => 'integer',
+
         ]);
 
         $name = $request->file('image')->getClientOriginalName();

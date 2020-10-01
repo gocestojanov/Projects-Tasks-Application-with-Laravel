@@ -53,8 +53,25 @@
 
             <div class="control">
                 <input type="text" name="title" id="" class="input" placeholder="Title" value="{{ $project->title }}">
-
             </div>
+
+        </div>
+
+        <div class="field">
+            <label for="status" class="label">Status</label>
+
+
+
+            <div class="select">
+                <select id="status" name="status">
+
+                  @foreach ($projectstatus as $status)
+                       <option value="{{ $status->id }}"  @if ($project->statusname->name == $status->name) selected='selected' @endif >{{ $status->name }}</option>
+                  @endforeach
+
+                </select>
+              </div>
+
         </div>
 
         <div class="field">

@@ -17,12 +17,32 @@
             @csrf
 
             <div class="control">
+                <label for="title" class="label">Title</label>
                 <input type="text" name="title" id="" placeholder="Project Title" class="input" value="{{ old('title') }}">
             </div>
 
             <br>
+            <div class="field">
+                <label for="status" class="label">Status</label>
+
+
+
+                <div class="select">
+                    <select id="status" name="status">
+
+                      @foreach ($projectstatus as $status)
+                           <option value="{{ $status->id }}"> {{ $status->name }} </option>
+                      @endforeach
+
+                    </select>
+                  </div>
+
+            </div>
+
 
             <div class="control">
+                <label for="description" class="label">Description</label>
+
                 <textarea name="description" id="" cols="30" rows="10"
                             placeholder="project Description"
                             class="textarea {{ $errors->has('description') ? 'is-danger' : '' }}" >
