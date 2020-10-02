@@ -21,27 +21,12 @@ class ProjectController extends Controller
     public function index(Project $project)
     {
 
-
-        // dd($path = public_path());
-
         $projects = auth()->user()->projects;
-
-
-        //$projects = Project::where('owner_id', auth()->id())->get();
-
-        //$projects = $project->all();
-
-        // dd($projects);
-
-        // dump($projects);
 
         // cache()->rememberForever('stats', function () {
         //     return ['lessons'=>1399, 'hours'=>500000, 'series'=>100];
         // }); */
-
-
         //  $stats = cache()->get('stats');
-
         // dump($stats);
 
         return view('projects.index', compact('projects'));
@@ -59,9 +44,9 @@ class ProjectController extends Controller
 
        // $this->authorize('view',$project);
 
-        //auth()->user()->can('update',$project);
+       //auth()->user()->can('update',$project);
 
-            // dd($project->statusname());
+       // dd($project->statusname());
 
 
         return view('projects.show', compact('project'));
@@ -124,16 +109,12 @@ class ProjectController extends Controller
 
         $name = $request->file('image')->getClientOriginalName();
         $path = $request->file('image')->storeAs('images', $name);
-        // dd($path);
-
 
         $validated['owner_id'] = auth()->id();
         $validated['image'] = $path;
 
-        // dd($validated);
-        //dd(request()->all());
-
         $project = Project::create($validated);
+
         // dd($project);
         //event(new ProjectCreated($project));
 

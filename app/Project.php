@@ -4,13 +4,16 @@ namespace App;
 
 use App\Mail\ProjectCreated;
 use PhpParser\Node\Stmt\Static_;
-use App\Events\ProjectCreated as ProjectExtendMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Events\ProjectCreated as ProjectExtendMail;
 
 class Project extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = ['title','description','owner_id','image','status'];
 
     protected $dispachesEvents = [
