@@ -14,4 +14,9 @@ class Task extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+    public function tags()
+    {
+        return $this->morphToMany('App\Tag', 'taggable');
+    }
 }
