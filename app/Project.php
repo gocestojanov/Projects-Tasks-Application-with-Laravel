@@ -50,6 +50,11 @@ class Project extends Model
         return $this->hasOne(ProjectStatus::class, 'id','status');
     }
 
+    public function tags()
+    {
+        return $this->morphToMany('App\Tag','taggable');
+    }
+
 
 
 }

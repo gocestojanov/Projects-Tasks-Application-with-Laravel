@@ -6,6 +6,8 @@ use App\Mail\ProjectCreated;
 use Illuminate\Http\Request;
 use App\Project;
 use App\ProjectStatus;
+use App\Tag;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 
@@ -56,8 +58,56 @@ class ProjectController extends Controller
     {
         $projectstatus = ProjectStatus::all();
 
-        return view('projects.edit',compact(['project','projectstatus']));
+        // $projecttags = $project->tags->pluck('name');
+        $projecttags = $project->tags;
+
+        $projecttags->all();
+
+        // dd($project);
+
+        // $projecttags->toArray();
+
+        // foreach ($projecttags as  $projecttag) {
+        //     $ptags[]['text'] = $projecttag->name;
+        // }
+
+        // $ptags = json_encode($ptags, JSON_HEX_APOS);
+        // dd($projecttags);
+
+        return view('projects.edit',compact(['project','projectstatus','projecttags']));
     }
+
+    public function getTags()
+    {
+        $tags = Tag::all();
+
+        // The array we're going to return
+        // $data = [];
+        // $maptags = $tags->map(function($items){
+        //     $data['text'] = $items->name;
+        //     return $data;
+        //  });
+
+
+        // dd($maptags->toJson());
+        return $tags;
+
+        // return response()->json(array( 'tags' => $tags ), 200);
+    }
+
+    public function getProjectTags(Project $project)
+    {
+        $projecttags = $project->tags;
+
+        $projecttags->all();
+
+
+        // dd($project);
+
+        return compact('projecttags');
+    }
+
+
 
     public function destroy(Project $project)
     {
@@ -69,12 +119,42 @@ class ProjectController extends Controller
     public function update(Project $project)
     {
 
+        // dd(request('projecttag'));
+        // insert into Tags table new Tags
+
+        $project->tags()->delete();
+
+
+        $projecttags = explode(',', request('projecttag'));
+
+
+        foreach ($projecttags as $projecttag) {
+
+
+            $tag = Tag::firstOrNew(['name' => $projecttag]);
+
+            if ( $tag instanceof Tag ) {
+                $tag->name = $projecttag;
+                $project->tags()->save($tag);
+            }
+
+
+        }
+
+
+
+        // dd($projecttags);
+
+        // insert into Taggables table Project tags
+
+
         $validated = request()->validate([
             'title' => 'required|min:3',
             'description' => 'required|min:3',
             'image' => 'required|min:3',
             'status' => 'integer',
         ]);
+
 
         $name = request()->file('image')->getClientOriginalName();
         $path = request()->file('image')->storeAs('images', $name);

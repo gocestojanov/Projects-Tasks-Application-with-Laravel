@@ -10,30 +10,30 @@
     @component('projects.verticalmenu')
 
 
-        <div class="columns">
-            <div class="column">
-                <h1 class="title">Edit Project</h1>
-            </div>
-
-            <div class="column">
-
-            </div>
-            <div class="column">
-
-            </div>
-
-
-            <div class="column has-text-right">
-                <form action="/projects/{{ $project->id }}" method="POST">
-                    @method('delete')
-                    @csrf
-
-                    <div class="field">
-                        <button type="submit" class="button">Delete this Project</button>
-                    </div>
-                </form>
-            </div>
+    <div class="columns">
+        <div class="column">
+            <h1 class="title">Edit Project</h1>
         </div>
+
+        <div class="column">
+
+        </div>
+        <div class="column">
+
+        </div>
+
+
+        <div class="column has-text-right">
+            <form action="/projects/{{ $project->id }}" method="POST">
+                @method('delete')
+                @csrf
+
+                <div class="field">
+                    <button type="submit" class="button">Delete this Project</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
 
     <div class="field">
@@ -60,19 +60,38 @@
         <div class="field">
             <label for="status" class="label">Status</label>
 
-
-
             <div class="select">
                 <select id="status" name="status">
 
-                  @foreach ($projectstatus as $status)
-                       <option value="{{ $status->id }}"  @if ($project->statusname->name == $status->name) selected='selected' @endif >{{ $status->name }}</option>
-                  @endforeach
+                    @foreach ($projectstatus as $status)
+                    <option value="{{ $status->id }}" @if ($project->statusname->name == $status->name)
+                        selected='selected' @endif >{{ $status->name }}</option>
+                    @endforeach
 
                 </select>
-              </div>
+            </div>
 
         </div>
+
+
+
+
+
+
+
+
+        <div id='app'>
+
+            <tags-input
+            :id="'tags'"
+            :name="'tags'"
+            :tags='{{ json_encode($projecttags) }}'
+            :projectid="{{ $project->id }}"
+            >
+            </tags-input>
+
+        </div>
+
 
         <div class="field">
             <label for="description" class="label">Description</label>
@@ -110,6 +129,8 @@
         @include('errors')
 
     </form>
+
+
 
 
 
