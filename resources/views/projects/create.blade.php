@@ -40,6 +40,19 @@
             </div>
 
 
+            <div id='app'>
+
+                <tags-input
+                :id="'tags'"
+                :name="'tags'"
+                :tags='tags'
+                >
+                </tags-input>
+
+            </div>
+
+
+
             <div class="control">
                 <label for="description" class="label">Description</label>
 

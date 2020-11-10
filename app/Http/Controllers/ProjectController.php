@@ -179,6 +179,11 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
 
+
+
+
+
+
         $validated = request()->validate([
             'title' => 'required|min:3',
             'description' => 'required|min:3',
@@ -194,6 +199,23 @@ class ProjectController extends Controller
         $validated['image'] = $path;
 
         $project = Project::create($validated);
+
+
+        $projecttags = explode(',', request('projecttag'));
+
+
+        foreach ($projecttags as $projecttag) {
+
+
+            $tag = Tag::firstOrNew(['name' => $projecttag]);
+
+            if ( $tag instanceof Tag ) {
+                $tag->name = $projecttag;
+                $project->tags()->save($tag);
+            }
+
+
+        }
 
         // dd($project);
         //event(new ProjectCreated($project));
