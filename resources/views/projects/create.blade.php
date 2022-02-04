@@ -57,6 +57,7 @@
                 <label for="description" class="label">Description</label>
 
                 <textarea name="description" id="" cols="30" rows="10"
+                            style="align-content:left;"
                             placeholder="project Description"
                             class="textarea {{ $errors->has('description') ? 'is-danger' : '' }}" >
                             {{ old('description') }}

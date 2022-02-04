@@ -39,8 +39,9 @@
     <div class="field">
         <label for="title" class="label">Project Image</label>
 
-        <img src="{{ asset('simages/' . $project->image )}}" alt="Image" height="64" width="64">
+        <img src="{{ asset('simages/images/' . $project->image )}}" alt="Image" height="64" width="64">
 
+        {{-- {{ $project }} --}}
     </div>
 
     <form action="/projects/{{ $project->id }}" method="post" enctype="multipart/form-data">
@@ -97,8 +98,11 @@
             <label for="description" class="label">Description</label>
 
             <div class="">
-                <textarea class="textarea" name="description" id="" cols="30" rows="10"
-                    placeholder="Description">{{ $project->description }}</textarea>
+                <textarea class="textarea"
+                          name="description" id="" cols="30" rows="10"
+                          placeholder="Description">
+                          {{ $project->description }}
+                </textarea>
             </div>
         </div>
 
@@ -115,7 +119,10 @@
                     </span>
                 </span>
                 <span class="file-name">
-                    No file uploaded
+
+                    {{ trim($project->image) }}
+                    <input type="hidden" id="image" name="image" value="{{ $project->image }}">
+
                 </span>
             </label>
         </div>

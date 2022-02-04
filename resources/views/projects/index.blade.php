@@ -20,11 +20,12 @@
 
 
             @foreach ($projects as $project)
-            <div class="box">
+
+            <div class="box" @if ($project->statusname->name == 'finished') style="background-color: lightgreen" @endif >
                 <article class="media">
                   <div class="media-left">
                     <figure class="image is-64x64 is-square">
-                      <img src="{{ asset('simages/' . $project->image )}}"  alt="Image" height="64" width="64">
+                      <img src="{{ asset('simages/images/' . $project->image )}}"  alt="Image" height="64" width="64">
                     </figure>
                   </div>
                   <div class="media-content">

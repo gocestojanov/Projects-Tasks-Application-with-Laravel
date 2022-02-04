@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -143,7 +142,6 @@ class ProjectController extends Controller
 
 
 
-        // dd($projecttags);
 
         // insert into Taggables table Project tags
 
@@ -156,12 +154,20 @@ class ProjectController extends Controller
         ]);
 
 
-        $name = request()->file('image')->getClientOriginalName();
-        $path = request()->file('image')->storeAs('images', $name);
+        if ( request()->file('image') != null) {
+
+            $name = request()->file('image')->getClientOriginalName();
+
+            $path = request()->file('image')->storeAs('images', $name);
+
+            $validated['image'] = $name;
+
+        };
+
 
 
         $validated['owner_id'] = auth()->id();
-        $validated['image'] = $path;
+
 
 
         $project->update($validated);
@@ -193,10 +199,12 @@ class ProjectController extends Controller
         ]);
 
         $name = $request->file('image')->getClientOriginalName();
+
+
         $path = $request->file('image')->storeAs('images', $name);
 
         $validated['owner_id'] = auth()->id();
-        $validated['image'] = $path;
+        $validated['image'] = $name;
 
         $project = Project::create($validated);
 
@@ -217,11 +225,11 @@ class ProjectController extends Controller
 
         }
 
-        // dd($project);
+        // dd($project->owner->email);
         //event(new ProjectCreated($project));
 
-        //Mail::to($request->user())->send(new ProjectCreated($project));
-        //Mail::to($project->owner->email)->send(new ProjectCreated($project));
+        // Mail::to($request->user())->send(new ProjectCreated($project));
+        Mail::to($project->owner->email)->send(new ProjectCreated($project));
 
         session()->flash('message','Your project has been created!');
 
