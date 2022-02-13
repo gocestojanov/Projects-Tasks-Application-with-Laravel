@@ -83,12 +83,8 @@
 
         <div id='app'>
 
-            <tags-input
-            :id="'tags'"
-            :name="'tags'"
-            :tags='{{ json_encode($projecttags) }}'
-            :projectid="{{ $project->id }}"
-            >
+            <tags-input :id="'tags'" :name="'tags'" :tags='{{ json_encode($projecttags) }}'
+                :projectid="{{ $project->id }}">
             </tags-input>
 
         </div>
@@ -98,9 +94,7 @@
             <label for="description" class="label">Description</label>
 
             <div class="">
-                <textarea class="textarea"
-                          name="description" id="" cols="30" rows="10"
-                          placeholder="Description">
+                <textarea class="textarea" name="description" id="" cols="30" rows="10" placeholder="Description">
                           {{ $project->description }}
                 </textarea>
             </div>

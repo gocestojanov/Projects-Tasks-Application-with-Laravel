@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ProjectCreated;
-use Illuminate\Http\Request;
 use App\Project;
 use App\ProjectStatus;
 use App\Tag;
-use Facade\FlareClient\Http\Response;
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends Controller
@@ -17,7 +15,6 @@ class ProjectController extends Controller
     {
         $this->middleware('auth');
     }
-
 
     public function index(Project $project)
     {
@@ -33,7 +30,6 @@ class ProjectController extends Controller
         return view('projects.index', compact('projects'));
     }
 
-
     public function show(Project $project)
     {
 
@@ -41,14 +37,13 @@ class ProjectController extends Controller
         //     abort(403);
         // }
 
-       // abort_if($project->owner_id !== auth()->id(),403);
+        // abort_if($project->owner_id !== auth()->id(),403);
 
-       // $this->authorize('view',$project);
+        // $this->authorize('view',$project);
 
-       //auth()->user()->can('update',$project);
+        //auth()->user()->can('update',$project);
 
-       // dd($project->statusname());
-
+        // dd($project->statusname());
 
         return view('projects.show', compact('project'));
     }
@@ -73,7 +68,7 @@ class ProjectController extends Controller
         // $ptags = json_encode($ptags, JSON_HEX_APOS);
         // dd($projecttags);
 
-        return view('projects.edit',compact(['project','projectstatus','projecttags']));
+        return view('projects.edit', compact(['project', 'projectstatus', 'projecttags']));
     }
 
     public function getTags()
@@ -87,7 +82,6 @@ class ProjectController extends Controller
         //     return $data;
         //  });
 
-
         // dd($maptags->toJson());
         return $tags;
 
@@ -100,13 +94,10 @@ class ProjectController extends Controller
 
         $projecttags->all();
 
-
         // dd($project);
 
         return compact('projecttags');
     }
-
-
 
     public function destroy(Project $project)
     {
@@ -123,28 +114,20 @@ class ProjectController extends Controller
 
         $project->tags()->delete();
 
-
         $projecttags = explode(',', request('projecttag'));
-
 
         foreach ($projecttags as $projecttag) {
 
-
             $tag = Tag::firstOrNew(['name' => $projecttag]);
 
-            if ( $tag instanceof Tag ) {
+            if ($tag instanceof Tag) {
                 $tag->name = $projecttag;
                 $project->tags()->save($tag);
             }
 
-
         }
 
-
-
-
         // insert into Taggables table Project tags
-
 
         $validated = request()->validate([
             'title' => 'required|min:3',
@@ -153,8 +136,7 @@ class ProjectController extends Controller
             'status' => 'integer',
         ]);
 
-
-        if ( request()->file('image') != null) {
+        if (request()->file('image') != null) {
 
             $name = request()->file('image')->getClientOriginalName();
 
@@ -164,11 +146,7 @@ class ProjectController extends Controller
 
         };
 
-
-
         $validated['owner_id'] = auth()->id();
-
-
 
         $project->update($validated);
 
@@ -185,11 +163,6 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
 
-
-
-
-
-
         $validated = request()->validate([
             'title' => 'required|min:3',
             'description' => 'required|min:3',
@@ -200,7 +173,6 @@ class ProjectController extends Controller
 
         $name = $request->file('image')->getClientOriginalName();
 
-
         $path = $request->file('image')->storeAs('images', $name);
 
         $validated['owner_id'] = auth()->id();
@@ -208,20 +180,16 @@ class ProjectController extends Controller
 
         $project = Project::create($validated);
 
-
         $projecttags = explode(',', request('projecttag'));
-
 
         foreach ($projecttags as $projecttag) {
 
-
             $tag = Tag::firstOrNew(['name' => $projecttag]);
 
-            if ( $tag instanceof Tag ) {
+            if ($tag instanceof Tag) {
                 $tag->name = $projecttag;
                 $project->tags()->save($tag);
             }
-
 
         }
 
@@ -231,7 +199,7 @@ class ProjectController extends Controller
         // Mail::to($request->user())->send(new ProjectCreated($project));
         Mail::to($project->owner->email)->send(new ProjectCreated($project));
 
-        session()->flash('message','Your project has been created!');
+        session()->flash('message', 'Your project has been created!');
 
         return redirect('/projects');
     }
