@@ -63,7 +63,7 @@
     @if ($project->tasks->count())
 
     @foreach ($project->tasks as $task)
-    <div class='box'>
+<div class='box'>
         <div class="columns">
             <div class="column is-11">
                 <form action="/tasks/{{ $task->id }}" method="POST">
@@ -71,11 +71,18 @@
                     @method('patch')
                     <label class="checkbox {{ $task->completed ? 'is_completed' : ''}}" for="completed{{ $task->id }}">
                         <div class="content">
-                            <input type="checkbox" name="completed" id="completed{{ $task->id }}"
-                                onchange="this.form.submit()" {{ $task->completed ? 'checked' : ''}}>
+                            <input type="checkbox" name="completed" id="completed{{ $task->id }}" onchange="this.form.submit()" {{
+                                $task->completed ? 'checked' : ''}}>
                             <span class="is-size-8 has-text-weight-normal"
-                                style="{{ $task->completed ? 'text-decoration: line-through;' : ''}}">{{
-                                $task->description }}</span>
+                                style="{{ $task->completed ? 'text-decoration: line-through;' : ''}}">
+                                {{ $task->description }}
+                            </span>
+                            @if ($task->completed)
+                                <br><br>
+                                <span class="has-text-primary has-background-white-ter"> <b>Closed on:</b>  </span> {{ Carbon\Carbon::parse($task->updated_at)->toDayDateTimeString('d-m-Y') }}
+                            @endif
+
+
                         </div>
 
                     </label>
