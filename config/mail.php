@@ -17,26 +17,22 @@ return [
     // 'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
     'host' => env('MAIL_HOST', ''),
 
-    'port' => env('MAIL_PORT', 587),
+    'port' => env('MAIL_PORT', ),
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', ''),
         'name' => env('MAIL_FROM_NAME', 'Stojanov Goce'),
     ],
 
-    'encryption' => env('MAIL_ENCRYPTION', 'TLS'),
+    'encryption' => env('MAIL_ENCRYPTION', ''),
 
     'username' => env('MAIL_USERNAME', ''),
 
     'password' => env('MAIL_PASSWORD',''),
 
-    'stream' => [
-        'ssl' => [
-           'allow_self_signed' => true,
-           'verify_peer' => false,
-           'verify_peer_name' => false,
-        ],
-     ],
+    'allow_self_signed' => true,
+    'verify_peer' => false,
+    'verify_peer_name' => false,
 
     /*
     |--------------------------------------------------------------------------
