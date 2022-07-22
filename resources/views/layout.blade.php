@@ -9,7 +9,8 @@
     <script src="https://kit.fontawesome.com/f851d6782e.js" crossorigin="anonymous"></script>
 
 
-    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+    {{-- <link rel="stylesheet" href="{{ mix('/css/app.css') }}"> --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
         .is_completed {

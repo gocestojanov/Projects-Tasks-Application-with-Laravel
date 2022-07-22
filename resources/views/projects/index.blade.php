@@ -45,7 +45,7 @@
                         @endisset
                     </small>
                     <small>Last updated by {{ $project->owner->name }} </small>
-                    <small style="font-style: italic; color: indianred;">on {{ $project->updated_at->format('d M Y')
+                    <small style="font-style: italic; color: rgb(128, 10, 75);">on {{ $project->updated_at->format('d M Y')
                         }}</small>
                 </p>
             </div>
