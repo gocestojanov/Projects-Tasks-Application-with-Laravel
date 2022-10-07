@@ -2,15 +2,18 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
+use PhpOption\Some;
+use Illuminate\Http\Request;
+ use Illuminate\Notifications\Notifiable;
+ use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Http\Request;
-use PhpOption\Some;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -42,6 +45,12 @@ class User extends Authenticatable
     public function projects()
     {
         return $this->hasMany(Project::class,'owner_id');
+    }
+
+
+    protected static function newFactory()
+    {
+        return UserFactory::new();
     }
 
 }

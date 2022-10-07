@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ProjectsTest extends TestCase
@@ -20,14 +20,15 @@ class ProjectsTest extends TestCase
         $this->withExceptionHandling();
 
         # given
-        $this->actingAs(factory('App\User')->create());
+        // $user = User::newFactory()->create();
+        $this->actingAs(User::factory()->create());
         # when
         $this->post('/projects',[
             'title' => 'First Project'
         ]);
         # then
         $this->assertDatabaseHas('projects',[
-            'title' => 'First Project'
+            'title' => 'Magic Milk Experiment 4'
 
         ]);
 
