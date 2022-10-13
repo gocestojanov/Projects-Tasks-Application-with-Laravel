@@ -15,13 +15,11 @@ use App\Notifications\SubscriptionRenewalFailed;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\ProjectController;
 
+Route::get('/','PagesController@home');
 Route::get('/about','PagesController@about');
 Route::get('/contact','PagesController@contact');
-Route::get('/','PagesController@home');
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::resource('projects', 'ProjectController');
-
 Route::get('tags', [ProjectController::class, 'getTags']);
 Route::get('projecttags/{project}', [ProjectController::class, 'getProjectTags']);
 

@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
-@section('title','Projects App')
+@section('title','Project Tasks App')
 
 
 
 
 @section('content')
-
-    <div class="content">
+     <div class="content">
         <div class="columns">
         <div class="column is-one-fifth"></div>
         <div class="column">

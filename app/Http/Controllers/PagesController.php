@@ -15,11 +15,8 @@ class PagesController extends Controller
             'Go to concert'
         ];
 
-
-        // return view('welcome')->withTasks($tasks)->withFoo('foo');
-        return view('welcome', ['tasks'=>$tasks, 'foo'=> request('title')]);
-
-
+        return view('welcome', ['tasks' => $tasks,
+                                'title'=> 'Project Tasks App']);
     }
 
 
